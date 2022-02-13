@@ -9,20 +9,8 @@ body {
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-image: linear-gradient(
-    to right top,
-    #f9f871,
-    #ffe469,
-    #ffd166,
-    #ffbe66,
-    #ffac69,
-    #ff9d6d,
-    #ff8f73,
-    #ff827b,
-    #fc7486,
-    #f46993,
-    #e861a2,
-    #d65db1
-  );
+  background-image: linear-gradient(to right top, #12c2e9, #f64f59, #c471ed);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   height: 100%;
 }

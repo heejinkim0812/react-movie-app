@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import NoResult from "./NoResult";
 import Loading from "../components/Loading";
 import MovieInfo from "../components/MovieInfo";
 import styles from "./routesCSS/Group.module.css";
