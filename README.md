@@ -3,6 +3,10 @@
 Simple Movie information Web  
 Used **React**, **NodeJS**, **CSS**
 
+![Screenshot](https://user-images.githubusercontent.com/71063574/153762601-5352db8b-890a-4eb3-8134-95bf03fbce24.jpg)
+
+🔗 https://heejinkim0812.github.io/react-movie
+
 </br>
 
 ## 🛠 Using Skill
