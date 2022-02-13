@@ -1,21 +1,21 @@
 import { Link } from "react-router-dom";
-
-import navList from "../atom/NavList";
-import Slide from "../components/Slide";
+import HomeSlide from "../components/HomeSlide";
+import NavList from "../atom/NavList";
+import styles from "./routesCSS/Home.module.css";
 
 function Home() {
   return (
-    <div>
-      {navList.map((slide) => {
+    <div className={styles.container}>
+      {NavList.map((slide) => {
         return (
-          <div>
-            <h3>
+          <div className={styles.slide__box}>
+            <h3 className={styles.title}>
               <Link to={`/page/${slide.path}/1`}>
-                <i></i>
-                <span>{slide.title}</span>
+                <i class="fas fa-external-link-alt"></i>
+                <span>{slide.title} Movie</span>
               </Link>
             </h3>
-            <Slide
+            <HomeSlide
               ytsApi={`https://yts.mx/api/v2/list_movies.json?limit=10&${slide.path}&sort_by=year`}
             />
           </div>
@@ -24,4 +24,5 @@ function Home() {
     </div>
   );
 }
+
 export default Home;

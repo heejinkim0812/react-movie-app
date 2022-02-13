@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import navList from "../atom/NavList";
-import { listPageReLoading, focusNav } from "../atom/Atoms";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-function Nav() {
+import { listPageReLoading, focusNav } from "../atom/Atoms";
+import navList from "../atom/NavList";
+import styles from "./componentsCSS/Navbar.module.css";
+
+function Navbar() {
   let last_known_scroll_position = 0;
   let ticking = false;
   const [changing, setChanging] = useState(false);
@@ -12,6 +16,11 @@ function Nav() {
 
   const pageReLoading = useSetRecoilState(listPageReLoading);
   const [focusPath, setFocusPath] = useRecoilState(focusNav);
+
+  const [search, setSearch] = useState(null);
+  const searchClick = (event) => {
+    setSearch(event.target.value);
+  };
 
   const doSomething = (scroll_pos) => {
     if (scroll_pos >= 10) {
@@ -42,7 +51,6 @@ function Nav() {
   const optionOnClick = () => {
     pageReLoading(true);
   };
-
   return (
     <div>
       <nav
@@ -57,19 +65,19 @@ function Nav() {
               }
             : { backgroundColor: "transparent" }
         }
+        className={styles.container}
       >
-        <div>
+        <div className={styles.title}>
           <Link to="/react-movie" onClick={() => setFocusPath("")}>
-            <i></i>
+            <i class="fab fa-neos"></i>
             <strong>ETFLEX</strong>
           </Link>
         </div>
-        <ul>
+        <ul className={styles.option__list}>
           {navList.map(({ title, path }) => {
             return (
-              <li key={title}>
+              <li>
                 <Link
-                  key={title}
                   to={`/page/${path}/1`}
                   onClick={focusPath !== path ? optionOnClick : null}
                   style={
@@ -86,9 +94,30 @@ function Nav() {
             );
           })}
         </ul>
+        <div className={styles.searchBar}>
+          <div>
+            <form>
+              <input
+                type="text"
+                placeholder="Search Movie!"
+                value={search}
+                onChange={searchClick}
+                onMouseOut={() => {
+                  setSearch("");
+                }}
+              ></input>
+              <Link to={`/search/${search}`}>
+                <button>
+                  <FontAwesomeIcon icon={faSearch} size="lg" />
+                </button>
+              </Link>
+            </form>
+          </div>
+        </div>
       </nav>
-      <div></div>
+      <div className={styles.null}></div>
     </div>
   );
 }
-export default Nav;
+
+export default Navbar;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import Movie from "./Movie";
 import Loading from "./Loading";
+import MovieInfo from "./MovieInfo";
+import styles from "./componentsCSS/HomeSlide.module.css";
 
 function Slide({ ytsApi }) {
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,6 @@ function Slide({ ytsApi }) {
     }
     setTrans((current) => current - 350);
   };
-
   const getMovies = async () => {
     const json = await (await fetch(ytsApi)).json();
     setMovies(json.data.movies);
@@ -30,18 +30,19 @@ function Slide({ ytsApi }) {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       {loading ? (
         <Loading />
       ) : (
-        <div>
+        <div className={styles.slide__show}>
           <div
+            className={styles.slide}
             style={{
               transform: `translateX(${trans}px)`,
             }}
           >
             {movies.map((movie) => (
-              <Movie
+              <MovieInfo
                 key={movie.id}
                 id={movie.id}
                 year={movie.year}
@@ -49,7 +50,7 @@ function Slide({ ytsApi }) {
                 title={movie.title}
                 summary={""}
                 genres={movie.genres}
-                style={{
+                movie_style={{
                   minWidth: "350px",
                   height: "300px",
                 }}
@@ -60,11 +61,11 @@ function Slide({ ytsApi }) {
       )}
       {loading ? null : (
         <div>
-          <button onClick={onClickL}>
-            <i></i>
+          <button class={styles.left} onClick={onClickL}>
+            <i class="fas fa-caret-square-left"></i>
           </button>
-          <button onClick={onClickR}>
-            <i></i>
+          <button class={styles.right} onClick={onClickR}>
+            <i class="fas fa-caret-square-right"></i>
           </button>
         </div>
       )}

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
-import Point from "../components/Point";
+import DetailPoint from "../components/DetailPoint";
+import styles from "./routesCSS/Home.module.css";
 
 function Detail() {
   const { id } = useParams();
@@ -18,11 +19,11 @@ function Detail() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       {loading ? (
         <Loading />
       ) : (
-        <Point
+        <DetailPoint
           backgroundImg={datas.background_image_original}
           coverImg={datas.medium_cover_image}
           url={datas.url}
@@ -31,7 +32,6 @@ function Detail() {
           runtime={datas.runtime}
           genres={datas.genres}
           downloads={datas.download_count}
-          summary={datas.description_intro}
         />
       )}
     </div>

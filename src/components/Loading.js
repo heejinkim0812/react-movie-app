@@ -1,6 +1,8 @@
+import styles from "./componentsCSS/Loading.module.css";
+
 function Loading() {
   return (
-    <div>
+    <div className={styles.loader}>
       <span>Loading...</span>
     </div>
   );
